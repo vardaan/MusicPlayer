@@ -1,18 +1,20 @@
-Create a awesome music player player for android
+## Awesome music player
 
-Will use MVP architecture
+* Create a awesome music player player for android
 
-Testing where ever possible 
+* Will use MVP architecture
 
-A configured continuous integration server
+* Testing where ever possible 
 
-Git flow as git branching model
+* A configured continuous integration server
 
-Will be made open source
+* Git flow as git branching model
 
-Will use abstraction where ever possible
+* Will be made open source
 
-We might also use the Rx-java
+* Will use abstraction where ever possible
 
-Fully Utilise the material design
+* We might also use the Rx-java
+
+* Fully Utilise the material design
 
