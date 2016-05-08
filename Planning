@@ -2,7 +2,7 @@ Features
 
 Basic
 
-# Browse and play your music by albums, artists, songs, playlists, folders
+# Browse and play your music by albums, artists, songs, playlist, folders
 # Support for all the music formats
 # Smart search to search your music properly
 # Shuffle support
@@ -20,6 +20,8 @@ Good for expansion
 # Support for android watch
 # Support android auto
 # Support android tv
+# Support proper accessibility
+# Support proper internationalisation
 
 
 Nice to have although not necessary
@@ -29,4 +31,11 @@ Nice to have although not necessary
 # Download lyrics from the internet
 # Download cover art in the settings
 # Tag editing(Don't know what it is :P)
+
+
+Screens
+
+#Home
+
+#Splash made it
 
