@@ -10,8 +10,6 @@
 
 * Git flow as git branching model
 
-* Will be made open source
-
 * Will use abstraction where ever possible
 
 * We might also use the Rx-java
