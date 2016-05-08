@@ -4,6 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import me.dev.superavesome.musicplayer.main.MainActivity;
 
+/**
+ * Shows the application launcher for the time it takes app to boots up
+ */
+
 public class SplashActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
