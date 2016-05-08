@@ -7,13 +7,21 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import java.util.ArrayList;
+import java.util.List;
+import me.dev.superavesome.musicplayer.ArtistFragment;
 import me.dev.superavesome.musicplayer.BaseActivity;
 import me.dev.superavesome.musicplayer.R;
 
@@ -38,17 +46,37 @@ public class MainActivity extends BaseActivity {
 
     setUpToolbar();
 
-    drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
     setupDrawerContent(navigationView);
-    //setupViewPager(viewPager);
+
+    setupViewPager(viewpager);
+
+    tabs.setupWithViewPager(viewpager);
   }
 
   private void setUpToolbar() {
     setSupportActionBar(toolbar);
+    toolbar.setTitle(R.string.my_music);
+
+    //Todo check making some weird animation
+    ActionBarDrawerToggle mDrawerToggle =
+        new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.my_music,
+            R.string.my_music);
+    drawerLayout.addDrawerListener(mDrawerToggle);
+    mDrawerToggle.syncState();
 
     final ActionBar ab = getSupportActionBar();
     ab.setHomeAsUpIndicator(R.drawable.ic_menu);
     ab.setDisplayHomeAsUpEnabled(true);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    final int id = item.getItemId();
+    switch (id) {
+      case android.R.id.home:
+        drawerLayout.openDrawer(GravityCompat.START);
+        break;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   private void setupDrawerContent(NavigationView navigationView) {
@@ -60,5 +88,39 @@ public class MainActivity extends BaseActivity {
             return true;
           }
         });
+  }
+
+  private void setupViewPager(ViewPager viewPager) {
+    Adapter adapter = new Adapter(getSupportFragmentManager());
+    adapter.addFragment(new ArtistFragment(), "Artists");
+    adapter.addFragment(new ArtistFragment(), "Songs");
+    adapter.addFragment(new ArtistFragment(), "Genre");
+    viewPager.setAdapter(adapter);
+  }
+
+  static class Adapter extends FragmentPagerAdapter {
+    private final List<Fragment> mFragments = new ArrayList<>();
+    private final List<String> mFragmentTitles = new ArrayList<>();
+
+    public Adapter(FragmentManager fm) {
+      super(fm);
+    }
+
+    public void addFragment(Fragment fragment, String title) {
+      mFragments.add(fragment);
+      mFragmentTitles.add(title);
+    }
+
+    @Override public Fragment getItem(int position) {
+      return mFragments.get(position);
+    }
+
+    @Override public int getCount() {
+      return mFragments.size();
+    }
+
+    @Override public CharSequence getPageTitle(int position) {
+      return mFragmentTitles.get(position);
+    }
   }
 }
