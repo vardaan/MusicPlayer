@@ -17,8 +17,6 @@
 package me.dev.superavesome.musicplayer;
 
 import android.content.Context;
-import android.net.Uri;
-import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import me.dev.superavesome.musicplayer.model.Song;
@@ -92,13 +90,13 @@ public class Library {
   // Methods for finding a media object by ID
   ///////////////////////////////////////////////////////////////////////////
 
-  @Nullable public static Song findSongById(long id) {
-    for (Song song : getSongs()) if (song.getID() == id) return song;
-    return null;
-  }
-
-  @Nullable public static Song findSongByUri(Uri uri) {
-    for (Song song : getSongs()) if (song.getUri() == uri) return song;
-    return null;
-  }
+  //@Nullable public static Song findSongById(long id) {
+  //  for (Song song : getSongs()) if (song.getID() == id) return song;
+  //  return null;
+  //}
+  //
+  //@Nullable public static Song findSongByUri(Uri uri) {
+  //  for (Song song : getSongs()) if (song.getUri() == uri) return song;
+  //  return null;
+  //}
 }

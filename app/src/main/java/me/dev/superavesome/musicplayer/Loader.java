@@ -28,7 +28,6 @@ import android.support.annotation.WorkerThread;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
-import me.dev.superavesome.musicplayer.model.MediaObject;
 
 /**
  * A class that needs to be extended in order to load a list of a certain type of object.
@@ -36,7 +35,7 @@ import me.dev.superavesome.musicplayer.model.MediaObject;
  * @param <Return> The type to return when done loading. This type should <b>NOT</b> be a {@link
  * List}
  */
-public abstract class Loader<Return extends MediaObject> {
+public abstract class Loader<Return> {
   protected Context context;
 
   public Loader(Context context, Object... params) {
@@ -88,7 +87,7 @@ public abstract class Loader<Return extends MediaObject> {
         do {
           Return obj = buildObject(cursor);
           if (obj != null) {
-            obj.setPosInList(cursor.getPosition()).setContext(getContext()).lock();
+            //obj.setPosInList(cursor.getPosition()).setContext(getContext()).lock();
             generated.add(obj);
             notifyOneLoaded(obj);
           }
@@ -106,7 +105,7 @@ public abstract class Loader<Return extends MediaObject> {
 
     @SafeVarargs @Override protected final void onProgressUpdate(Return... values) {
       super.onProgressUpdate(values);
-      for (Return val : values) mVerifyListener.onOneLoaded(val, val.getPosInList());
+      //for (Return val : values) mVerifyListener.onOneLoaded(val, val.getPosInList());
     }
 
     @Override protected void onPostExecute(List<Return> result) {

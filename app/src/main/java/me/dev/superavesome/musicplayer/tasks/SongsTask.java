@@ -38,13 +38,14 @@ public class SongsTask extends Loader<Song> {
   }
 
   @Override protected Song buildObject(@NonNull Cursor cursor) {
-    Song song = new Song();
-    song.setTitle(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)));
-    song.setSongArtist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)));
-    song.setID(cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media._ID)));
-    song.setAlbumID(cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)));
-    song.setSongDuration(cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)));
-    song.setTrackNumber(cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.TRACK)));
+    Song song = new Song.Builder().album(
+        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM)))
+        .albumId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)))
+        .artist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)))
+        .artistId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID)))
+        .duration(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
+        .genre(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
+        .build();
     Timber.d(song.toString());
     return song;
   }

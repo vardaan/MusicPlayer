@@ -16,74 +16,105 @@
 
 package me.dev.superavesome.musicplayer.model;
 
-import android.net.Uri;
-import android.support.v4.media.session.MediaSessionCompat.QueueItem;
-
-import static android.provider.MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-import static android.support.v4.media.MediaMetadataCompat.METADATA_KEY_ARTIST;
-import static android.support.v4.media.MediaMetadataCompat.METADATA_KEY_DURATION;
-import static android.support.v4.media.MediaMetadataCompat.METADATA_KEY_TRACK_NUMBER;
-
 /**
- * Wrapper around a MediaMetadataCompat optimised for Song metadata
+ * Model for the Song
  */
-public class Song extends MediaObject {
-  public long ID, albumID;
+public class Song {
 
-  @Override protected Uri getBaseUri() {
-    return EXTERNAL_CONTENT_URI;
+  private final String duration;
+  private final String artistId;
+  private final String artist;
+  private final String albumId;
+  private final String album;
+  private final String genre;
+
+  private Song(Builder builder) {
+    duration = builder.duration;
+    artistId = builder.artistId;
+    artist = builder.artist;
+    albumId = builder.albumId;
+    album = builder.album;
+    genre = builder.genre;
   }
 
-  public String getSongArtist() {
-    return data.getString(METADATA_KEY_ARTIST);
+  public String getDuration() {
+    return duration;
   }
 
-  public Song setSongArtist(String songArtist) {
-    putString(METADATA_KEY_ARTIST, songArtist);
-    return this;
+  public String getArtistId() {
+    return artistId;
   }
 
-  public long getSongDuration() {
-    return data.getLong(METADATA_KEY_DURATION);
+  public String getArtist() {
+    return artist;
   }
 
-  public Song setSongDuration(long songDuration) {
-    putLong(METADATA_KEY_DURATION, songDuration);
-    return this;
+  public String getAlbumId() {
+    return albumId;
   }
 
-  public String getTrackNumberString() {
-    long track = data.getLong(METADATA_KEY_TRACK_NUMBER);
-    return track != 0 ? String.valueOf(track) : "-";
+  public String getAlbum() {
+    return album;
   }
 
-  public Song setTrackNumber(long trackNumber) {
-    putLong(METADATA_KEY_TRACK_NUMBER, trackNumber);
-    return this;
+  public String getGenre() {
+    return genre;
   }
 
-  public long getAlbumID() {
-    return albumID;
-  }
+  public static final class Builder {
+    private String duration;
+    private String artistId;
+    private String artist;
+    private String albumId;
+    private String album;
+    private String genre;
 
-  public Song setAlbumID(long albumID) {
-    this.albumID = albumID;
-    return this;
-  }
+    public Builder() {
+    }
 
-  public QueueItem toQueueItem() {
-    return new QueueItem(data.getDescription(), getID());
-  }
+    public Builder duration(String val) {
+      duration = val;
+      return this;
+    }
 
-  @Deprecated public static Song parse() {
-    //Do nothing. This method will be removed soon
-    return new Song();
+    public Builder artistId(String val) {
+      artistId = val;
+      return this;
+    }
+
+    public Builder artist(String val) {
+      artist = val;
+      return this;
+    }
+
+    public Builder albumId(String val) {
+      albumId = val;
+      return this;
+    }
+
+    public Builder album(String val) {
+      album = val;
+      return this;
+    }
+
+    public Builder genre(String val) {
+      genre = val;
+      return this;
+    }
+
+    public Song build() {
+      return new Song(this);
+    }
   }
 
   @Override public String toString() {
     return "Song{" +
-        "ID=" + ID +
-        ", albumID=" + albumID +
+        "duration='" + duration + '\'' +
+        ", artistId='" + artistId + '\'' +
+        ", artist='" + artist + '\'' +
+        ", albumId='" + albumId + '\'' +
+        ", album='" + album + '\'' +
+        ", genre='" + genre + '\'' +
         '}';
   }
 }
