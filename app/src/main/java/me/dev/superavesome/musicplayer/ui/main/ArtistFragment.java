@@ -1,10 +1,11 @@
-package me.dev.superavesome.musicplayer;
+package me.dev.superavesome.musicplayer.ui.main;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import me.dev.superavesome.musicplayer.R;
 
 /**
  */

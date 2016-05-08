@@ -1,4 +1,4 @@
-package me.dev.superavesome.musicplayer.main;
+package me.dev.superavesome.musicplayer.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +21,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import java.util.ArrayList;
 import java.util.List;
-import me.dev.superavesome.musicplayer.ArtistFragment;
 import me.dev.superavesome.musicplayer.BaseActivity;
 import me.dev.superavesome.musicplayer.R;
 

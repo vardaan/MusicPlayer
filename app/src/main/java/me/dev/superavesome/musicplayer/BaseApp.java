@@ -1,6 +1,7 @@
 package me.dev.superavesome.musicplayer;
 
 import android.app.Application;
+import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -16,5 +17,8 @@ public class BaseApp extends Application {
         new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Roboto-Regular.ttf")
             .setFontAttrId(R.attr.fontPath)
             .build());
+
+    //enabling Timber
+    Timber.plant(new Timber.DebugTree());//todo refactor add else statement
   }
 }
