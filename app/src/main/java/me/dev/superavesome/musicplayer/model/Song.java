@@ -27,6 +27,19 @@ public class Song {
   private final String albumId;
   private final String album;
   private final String genre;
+  private final String path;
+  private final String title;
+
+  private Song(Builder builder, String title) {
+    this.title = title;
+    duration = builder.duration;
+    artistId = builder.artistId;
+    artist = builder.artist;
+    albumId = builder.albumId;
+    album = builder.album;
+    genre = builder.genre;
+    path = builder.path;
+  }
 
   private Song(Builder builder) {
     duration = builder.duration;
@@ -35,6 +48,16 @@ public class Song {
     albumId = builder.albumId;
     album = builder.album;
     genre = builder.genre;
+    path = builder.path;
+    title = builder.title;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getPath() {
+    return path;
   }
 
   public String getDuration() {
@@ -61,6 +84,18 @@ public class Song {
     return genre;
   }
 
+  @Override public String toString() {
+    return "Song{" +
+        "duration='" + duration + '\'' +
+        ", artistId='" + artistId + '\'' +
+        ", artist='" + artist + '\'' +
+        ", albumId='" + albumId + '\'' +
+        ", album='" + album + '\'' +
+        ", genre='" + genre + '\'' +
+        ", path='" + path + '\'' +
+        '}';
+  }
+
   public static final class Builder {
     private String duration;
     private String artistId;
@@ -68,6 +103,8 @@ public class Song {
     private String albumId;
     private String album;
     private String genre;
+    private String path;
+    private String title;
 
     public Builder() {
     }
@@ -102,19 +139,18 @@ public class Song {
       return this;
     }
 
+    public Builder path(String val) {
+      path = val;
+      return this;
+    }
+
+    public Builder title(String val) {
+      title = val;
+      return this;
+    }
+
     public Song build() {
       return new Song(this);
     }
-  }
-
-  @Override public String toString() {
-    return "Song{" +
-        "duration='" + duration + '\'' +
-        ", artistId='" + artistId + '\'' +
-        ", artist='" + artist + '\'' +
-        ", albumId='" + albumId + '\'' +
-        ", album='" + album + '\'' +
-        ", genre='" + genre + '\'' +
-        '}';
   }
 }

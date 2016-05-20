@@ -79,10 +79,10 @@ public abstract class Loader<Return> {
       Cursor cursor = getContext().getContentResolver()
           .query(getUri(), getProjection(), getSelection(), getSelectionArgs(), getSortOrder());
       try {
-        //If there is no data return an empty list
+        //If there is no path return an empty list
         if (cursor == null || !cursor.moveToFirst()) return new ArrayList<>();
 
-        //If there is data then continue
+        //If there is path then continue
         List<Return> generated = new ArrayList<>();
         do {
           Return obj = buildObject(cursor);

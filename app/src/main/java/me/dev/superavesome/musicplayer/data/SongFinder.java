@@ -13,7 +13,8 @@ import timber.log.Timber;
  */
 public class SongFinder {
 
-  private Context context;
+  //todo make it efficient by using projection
+  private final Context context;
   private ArrayList<Song> mSongs;
 
   public SongFinder(Context context) {
@@ -26,13 +27,13 @@ public class SongFinder {
             MediaStore.Audio.Media.IS_MUSIC + "!=0", null,
             MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
     try {
-      //If there is no data return an empty list
+      //If there is no path return an empty list
       if (cursor == null || !cursor.moveToFirst()) {
         return new ArrayList<>(0);//todo may be collection.empty
       }
 
       mSongs = new ArrayList<>(cursor.getCount());
-      //If there is data then continue
+      //If there is path then continue
       do {
         final Song song = buildSongFromCursor(cursor);
         //obj.setPosInList(cursor.getPosition()).setContext(getContext()).lock(); //todo do why this
@@ -55,6 +56,8 @@ public class SongFinder {
         .artistId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID)))
         .duration(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
         .genre(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
+        .path(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA)))
+        .title(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)))
         .build();
   }
 }

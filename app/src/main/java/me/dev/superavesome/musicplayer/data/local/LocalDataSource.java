@@ -10,7 +10,7 @@ import me.dev.superavesome.musicplayer.model.Song;
 /**
  * Created by Vardan sharma on 20/5/16.
  */
-public class LocalDataSource implements DataSource {
+public final class LocalDataSource implements DataSource {
 
   final SongFinder songFinder;
 

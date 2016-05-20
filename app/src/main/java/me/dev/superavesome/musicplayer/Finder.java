@@ -27,10 +27,10 @@ public class Finder {
     final Cursor cursor =
         context.getContentResolver().query(getUri(), null, getSelection(), null, getSortOrder());
     try {
-      //If there is no data return an empty list
+      //If there is no path return an empty list
       if (cursor == null || !cursor.moveToFirst()) return new ArrayList<>();
 
-      //If there is data then continue
+      //If there is path then continue
       do {
         final Song song = buildSongFromCursor(cursor);
         if (song != null) {

@@ -1,0 +1,38 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+  <ImageView
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:id="@+id/imageView"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentLeft="true"
+      android:layout_margin="8dp"
+      tools:src="#ff0"
+      android:layout_alignParentStart="true"
+      />
+  <TextView
+      android:id="@+id/txt_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="@style/TextAppearance.AppCompat.Title"
+      android:text="I kissed a girl"
+      android:layout_alignParentTop="true"
+      android:layout_toRightOf="@+id/imageView"
+      android:layout_toEndOf="@+id/imageView"
+      />
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+      android:text="Katy perry"
+      android:id="@+id/txt_artist"
+      android:layout_below="@+id/txt_title"
+      android:layout_toRightOf="@+id/imageView"
+      android:layout_toEndOf="@+id/imageView"
+      />
+</RelativeLayout>

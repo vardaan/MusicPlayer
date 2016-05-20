@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity {
     Adapter adapter = new Adapter(getSupportFragmentManager());
     //todo make string constants
     adapter.addFragment(new ArtistFragment(), "Artists");
-    adapter.addFragment(new ArtistFragment(), "Songs");
+    adapter.addFragment(new SongListFragment(), "Songs");
     adapter.addFragment(new ArtistFragment(), "Genre");
     DataSource dataSource = new LocalDataSource(this);
     for (Song song : dataSource.getAllSongs()) {
