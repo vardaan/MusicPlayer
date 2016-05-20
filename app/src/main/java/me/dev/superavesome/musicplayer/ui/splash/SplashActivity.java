@@ -2,7 +2,6 @@ package me.dev.superavesome.musicplayer.ui.splash;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import me.dev.superavesome.musicplayer.Finder;
 import me.dev.superavesome.musicplayer.ui.main.MainActivity;
 
 /**
@@ -13,9 +12,6 @@ public class SplashActivity extends AppCompatActivity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-
-    Finder finder = new Finder(this);
-    finder.getAllSongs();
 
     // move to main activity
     startActivity(MainActivity.createIntent(SplashActivity.this));

@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import me.dev.superavesome.musicplayer.BaseActivity;
 import me.dev.superavesome.musicplayer.R;
+import me.dev.superavesome.musicplayer.data.DataSource;
+import me.dev.superavesome.musicplayer.data.local.LocalDataSource;
+import me.dev.superavesome.musicplayer.model.Song;
+import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
 
@@ -43,6 +47,10 @@ public class MainActivity extends BaseActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
+    setUpUI();
+  }
+
+  private void setUpUI() {
     setUpToolbar();
 
     setupDrawerContent(navigationView);
@@ -57,13 +65,17 @@ public class MainActivity extends BaseActivity {
     toolbar.setTitle(R.string.my_music);
 
     //Todo check making some weird animation
-    ActionBarDrawerToggle mDrawerToggle =
+    final ActionBarDrawerToggle mDrawerToggle =
         new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.my_music,
             R.string.my_music);
     drawerLayout.addDrawerListener(mDrawerToggle);
     mDrawerToggle.syncState();
 
     final ActionBar ab = getSupportActionBar();
+    if (ab == null) {
+      throw new IllegalStateException("action bar is null");
+    }
+
     ab.setHomeAsUpIndicator(R.drawable.ic_menu);
     ab.setDisplayHomeAsUpEnabled(true);
   }
@@ -91,9 +103,14 @@ public class MainActivity extends BaseActivity {
 
   private void setupViewPager(ViewPager viewPager) {
     Adapter adapter = new Adapter(getSupportFragmentManager());
+    //todo make string constants
     adapter.addFragment(new ArtistFragment(), "Artists");
     adapter.addFragment(new ArtistFragment(), "Songs");
     adapter.addFragment(new ArtistFragment(), "Genre");
+    DataSource dataSource = new LocalDataSource(this);
+    for (Song song : dataSource.getAllSongs()) {
+      Timber.d(song.toString());
+    }
     viewPager.setAdapter(adapter);
   }
 
