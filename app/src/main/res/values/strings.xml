@@ -2,6 +2,7 @@
   <string name="app_name">MusicPlayer</string>
   <string name="my_music">MyMusic</string>
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="rb_light">fonts/Roboto-Light.ttf</string>
+  <string name="rb_med">fonts/Roboto-Medium.ttf</string>
+  <string name="rb_regular">fonts/Roboto-Regular.ttf</string>
 </resources>
