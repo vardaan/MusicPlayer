@@ -1,5 +1,8 @@
 package me.dev.superavesome.musicplayer.ui.main;
 
+import android.content.ContentUris;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,10 +14,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.squareup.picasso.Picasso;
 import java.util.List;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.data.local.LocalDataSource;
 import me.dev.superavesome.musicplayer.model.Song;
+
+import static java.lang.Long.parseLong;
 
 /**
  */
@@ -33,7 +39,7 @@ public class ArtistFragment extends Fragment {
     LocalDataSource dataSource = new LocalDataSource(getActivity());
 
     final List<Song> songs = dataSource.getAllSongs();
-    final ArtistAdapter adapter = new ArtistAdapter(songs);
+    final ArtistAdapter adapter = new ArtistAdapter(songs, getActivity());
     rvArtist.setAdapter(adapter);
     return view;
   }
@@ -45,9 +51,12 @@ public class ArtistFragment extends Fragment {
 
   class ArtistAdapter extends RecyclerView.Adapter<SongVH> {
     private final List<Song> songs;
+    final Uri ART_CONTENT_URI = Uri.parse("content://media/external/audio/albumart");
+    private final Context context;
 
-    public ArtistAdapter(List<Song> songs) {
+    public ArtistAdapter(List<Song> songs, Context context) {
       this.songs = songs;
+      this.context = context;
     }
 
     @Override public SongVH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -56,9 +65,12 @@ public class ArtistFragment extends Fragment {
       return new SongVH(view);
     }
 
-    @Override public void onBindViewHolder(SongVH holder, int position) {
-      holder.txtArtist.setText(songs.get(position).getArtist());
-      holder.txtTitle.setText(songs.get(position).getTitle());
+    @Override public void onBindViewHolder(SongVH vh, int position) {
+      vh.txtArtist.setText(songs.get(position).getArtist());
+      vh.txtTitle.setText(songs.get(position).getTitle());
+      Uri albumArtUri =
+          ContentUris.withAppendedId(ART_CONTENT_URI, parseLong(songs.get(position).getAlbumId()));
+      Picasso.with(context).load(albumArtUri).into(vh.imageView);
     }
 
     @Override public int getItemCount() {
@@ -67,7 +79,7 @@ public class ArtistFragment extends Fragment {
   }
 
   static class SongVH extends RecyclerView.ViewHolder {
-    @Bind(R.id.imageView) ImageView imageView;
+    @Bind(R.id.img_song) ImageView imageView;
     @Bind(R.id.txt_title) TextView txtTitle;
     @Bind(R.id.txt_artist) TextView txtArtist;
 

@@ -30,17 +30,6 @@ public class Song {
   private final String path;
   private final String title;
 
-  private Song(Builder builder, String title) {
-    this.title = title;
-    duration = builder.duration;
-    artistId = builder.artistId;
-    artist = builder.artist;
-    albumId = builder.albumId;
-    album = builder.album;
-    genre = builder.genre;
-    path = builder.path;
-  }
-
   private Song(Builder builder) {
     duration = builder.duration;
     artistId = builder.artistId;

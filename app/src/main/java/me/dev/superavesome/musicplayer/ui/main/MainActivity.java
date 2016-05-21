@@ -21,7 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import java.util.ArrayList;
 import java.util.List;
-import me.dev.superavesome.musicplayer.BaseActivity;
+import me.dev.superavesome.musicplayer.base.BaseActivity;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.data.DataSource;
 import me.dev.superavesome.musicplayer.data.local.LocalDataSource;

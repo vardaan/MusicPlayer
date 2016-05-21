@@ -1,6 +1,7 @@
-package me.dev.superavesome.musicplayer;
+package me.dev.superavesome.musicplayer.base;
 
 import android.app.Application;
+import me.dev.superavesome.musicplayer.R;
 import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
