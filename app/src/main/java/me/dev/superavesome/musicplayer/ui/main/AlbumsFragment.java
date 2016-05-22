@@ -68,7 +68,7 @@ public class AlbumsFragment extends Fragment {
 
     @Override public AlbumVH onCreateViewHolder(ViewGroup parent, int viewType) {
       final LayoutInflater ll = LayoutInflater.from(parent.getContext());
-      final View view = ll.inflate(R.layout.item_artist, parent, false);
+      final View view = ll.inflate(R.layout.item_album, parent, false);
       return new AlbumVH(view);
     }
 

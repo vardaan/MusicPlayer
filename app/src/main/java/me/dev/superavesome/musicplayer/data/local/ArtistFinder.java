@@ -25,7 +25,7 @@ public class ArtistFinder {
     ContentResolver contentResolver = context.getContentResolver();
     String[] projection = {
         MediaStore.Audio.Artists._ID, MediaStore.Audio.Artists.ARTIST,
-        MediaStore.Audio.Artists.NUMBER_OF_ALBUMS
+        MediaStore.Audio.Artists.NUMBER_OF_ALBUMS, MediaStore.Audio.Artists.NUMBER_OF_TRACKS
     };
 
     final Cursor cursor =
@@ -62,6 +62,7 @@ public class ArtistFinder {
         cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST)))
         .numAlbums(cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_ALBUMS)))
         .id(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists._ID)))
+        .numTracks(cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_TRACKS)))
         .build();
   }
 }
