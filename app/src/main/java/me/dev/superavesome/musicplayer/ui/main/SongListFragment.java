@@ -72,7 +72,10 @@ public class SongListFragment extends Fragment {
       vh.txtTitle.setText(songs.get(position).getTitle());
       Uri albumArtUri =
           ContentUris.withAppendedId(ART_CONTENT_URI, parseLong(songs.get(position).getAlbumId()));
-      Picasso.with(context).load(albumArtUri).into(vh.imageView);
+      Picasso.with(context)
+          .load(albumArtUri)
+          .error(R.drawable.ic_placeholder_24dp)
+          .into(vh.imageView);
     }
 
     @Override public int getItemCount() {

@@ -72,14 +72,22 @@ public class ArtistFragment extends Fragment {
       Picasso.with(context)
           .load(albumArtUri)
           .transform(PalleteTransformation.getInstance())
+          .error(R.drawable.ic_placeholder_48_dp)
           .into(vh.imgAlbum, new Callback.EmptyCallback() {
-            @Override public void onSuccess() {
-              super.onSuccess();
-              final Bitmap bitmap = ((BitmapDrawable) vh.imgAlbum.getDrawable()).getBitmap(); // Ew!
-              int color = PalleteTransformation.getPalette(bitmap).getDarkVibrantColor(Color.BLACK);
-              vh.container.setBackgroundColor(color);
-            }
-          });
+                @Override public void onSuccess() {
+                  super.onSuccess();
+                  final Bitmap bitmap = ((BitmapDrawable) vh.imgAlbum.getDrawable()).getBitmap(); // Ew!
+                  int color = PalleteTransformation.getPalette(bitmap).getDarkVibrantColor(Color.BLACK);
+                  vh.container.setBackgroundColor(color);
+                }
+
+                @Override public void onError() {
+                  super.onError();
+                  vh.imgAlbum.setPadding(50, 50, 50, 50);
+                }
+              }
+
+          );
       vh.txtAlbum.setText(albums.get(position).getAlbumName());
       vh.txtArtist.setText(albums.get(position).getArtistName());
     }
