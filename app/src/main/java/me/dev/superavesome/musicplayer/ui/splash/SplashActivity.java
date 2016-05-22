@@ -15,5 +15,6 @@ public class SplashActivity extends AppCompatActivity {
 
     // move to main activity
     startActivity(MainActivity.createIntent(SplashActivity.this));
+    finish();//finish the current one
   }
 }

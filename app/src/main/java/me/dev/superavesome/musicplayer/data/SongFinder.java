@@ -59,6 +59,5 @@ public class SongFinder {
         .path(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA)))
         .title(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE)))
         .build();
-
   }
 }

@@ -41,7 +41,7 @@ public class SongListFragment extends Fragment {
     LocalDataSource dataSource = new LocalDataSource(getActivity());
 
     final List<Song> songs = dataSource.getAllSongs();
-    final ArtistAdapter adapter = new ArtistAdapter(songs, getActivity());
+    final SongAdapter adapter = new SongAdapter(songs, getActivity());
     rvSongs.setAdapter(adapter);
     return view;
   }
@@ -51,12 +51,12 @@ public class SongListFragment extends Fragment {
     ButterKnife.unbind(this);
   }
 
-  class ArtistAdapter extends RecyclerView.Adapter<SongVH> {
+  class SongAdapter extends RecyclerView.Adapter<SongVH> {
     private final List<Song> songs;
     final Uri ART_CONTENT_URI = Uri.parse("content://media/external/audio/albumart");
     private final Context context;
 
-    public ArtistAdapter(List<Song> songs, Context context) {
+    public SongAdapter(List<Song> songs, Context context) {
       this.songs = songs;
       this.context = context;
     }
