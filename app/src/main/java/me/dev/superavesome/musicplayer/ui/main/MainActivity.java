@@ -104,9 +104,9 @@ public class MainActivity extends BaseActivity {
   private void setupViewPager(ViewPager viewPager) {
     Adapter adapter = new Adapter(getSupportFragmentManager());
     //todo make string constants
-    adapter.addFragment(new ArtistFragment(), "Artists");
+    adapter.addFragment(new AlbumsFragment(), "Artists");
     adapter.addFragment(new SongListFragment(), "Songs");
-    adapter.addFragment(new ArtistFragment(), "Genre");
+    adapter.addFragment(new AlbumsFragment(), "Genre");
     DataSource dataSource = new LocalDataSource(this);
     for (Song song : dataSource.getAllSongs()) {
       Timber.d(song.toString());

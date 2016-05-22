@@ -8,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,21 +29,25 @@ import me.dev.superavesome.musicplayer.utils.PalleteTransformation;
 
 /**
  */
-public class ArtistFragment extends Fragment {
+public class AlbumsFragment extends Fragment {
 
-  @Bind(R.id.rv_artist) RecyclerView rvArtist;
+  @Bind(R.id.rv_albums) RecyclerView rvAlbums;
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View view = inflater.inflate(R.layout.fragment_artist, container, false);
+    View view = inflater.inflate(R.layout.fragment_albums, container, false);
     ButterKnife.bind(this, view);
-    AlbumFinder artistFinder = new AlbumFinder(getActivity());
-    //for (int i = 0; i < artistFinder.getAlbums().size(); i++) {
-    //  Timber.d(artistFinder.getAlbums().get(i).toString());
+    final FragmentActivity activity = getActivity();
+    //ArtistFinder artistFinder = new ArtistFinder(activity);
+    //for (Artist artist : artistFinder.getData()) {
+    //  Timber.d(artist.toString());
     //}
-    rvArtist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-    rvArtist.setAdapter(new AlbumAdapter(artistFinder.getAlbums(), getActivity()));
+    //    //todo do this in background
+    AlbumFinder albumFinder = new AlbumFinder(activity);
+    rvAlbums.setLayoutManager(new GridLayoutManager(activity, 2));
+    rvAlbums.setAdapter(new AlbumAdapter(albumFinder.getAlbums(), activity));
+    //
     return view;
   }
 
@@ -72,22 +77,15 @@ public class ArtistFragment extends Fragment {
       Picasso.with(context)
           .load(albumArtUri)
           .transform(PalleteTransformation.getInstance())
-          .error(R.drawable.ic_placeholder_48_dp)
+          .error(R.drawable.placeholder_with_padding)
           .into(vh.imgAlbum, new Callback.EmptyCallback() {
-                @Override public void onSuccess() {
-                  super.onSuccess();
-                  final Bitmap bitmap = ((BitmapDrawable) vh.imgAlbum.getDrawable()).getBitmap(); // Ew!
-                  int color = PalleteTransformation.getPalette(bitmap).getDarkVibrantColor(Color.BLACK);
-                  vh.container.setBackgroundColor(color);
-                }
-
-                @Override public void onError() {
-                  super.onError();
-                  vh.imgAlbum.setPadding(50, 50, 50, 50);
-                }
-              }
-
-          );
+            @Override public void onSuccess() {
+              super.onSuccess();
+              final Bitmap bitmap = ((BitmapDrawable) vh.imgAlbum.getDrawable()).getBitmap(); // Ew!
+              int color = PalleteTransformation.getPalette(bitmap).getDarkVibrantColor(Color.BLACK);
+              vh.container.setBackgroundColor(color);
+            }
+          });
       vh.txtAlbum.setText(albums.get(position).getAlbumName());
       vh.txtArtist.setText(albums.get(position).getArtistName());
     }
