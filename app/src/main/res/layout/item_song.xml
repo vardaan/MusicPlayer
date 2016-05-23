@@ -2,10 +2,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="?attr/selectableItemBackground"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:clickable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     android:orientation="horizontal"
     >
   <!--TODO not getting the touch ripple need to figure out why-->

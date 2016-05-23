@@ -23,10 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseActivity;
-import me.dev.superavesome.musicplayer.data.DataSource;
-import me.dev.superavesome.musicplayer.data.local.LocalDataSource;
-import me.dev.superavesome.musicplayer.model.Song;
-import timber.log.Timber;
 
 public class MainActivity extends BaseActivity {
 
@@ -102,15 +98,11 @@ public class MainActivity extends BaseActivity {
   }
 
   private void setupViewPager(ViewPager viewPager) {
-    Adapter adapter = new Adapter(getSupportFragmentManager());
-    //todo make string constants
+    final Adapter adapter = new Adapter(getSupportFragmentManager());
+    //todo make string constants probably a factory fragments
     adapter.addFragment(new AlbumsFragment(), "Albums");
     adapter.addFragment(new SongListFragment(), "Songs");
     adapter.addFragment(new ArtistFragment(), "Artists");
-    DataSource dataSource = new LocalDataSource(this);
-    for (Song song : dataSource.getAllSongs()) {
-      Timber.d(song.toString());
-    }
     viewPager.setAdapter(adapter);
   }
 
