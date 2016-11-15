@@ -1,12 +1,11 @@
 package me.dev.superavesome.musicplayer.data.remote;
 
-import android.provider.MediaStore;
-
 import java.util.List;
 
 import me.dev.superavesome.musicplayer.data.DataSource;
 import me.dev.superavesome.musicplayer.model.Album;
 import me.dev.superavesome.musicplayer.model.Artist;
+import me.dev.superavesome.musicplayer.model.Genre;
 import me.dev.superavesome.musicplayer.model.Song;
 import rx.Observable;
 
@@ -32,7 +31,7 @@ public class RemoteDataSource implements DataSource {
     }
 
     @Override
-    public Observable<List<MediaStore.Audio.Genres>> getAllGenres() {
+    public Observable<List<Genre>> getAllGenres() {
         throw new IllegalStateException("NOT YET IMPLEMENTED");
     }
 }

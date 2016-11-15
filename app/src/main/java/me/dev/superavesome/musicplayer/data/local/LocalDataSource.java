@@ -1,7 +1,6 @@
 package me.dev.superavesome.musicplayer.data.local;
 
 import android.content.Context;
-import android.provider.MediaStore;
 
 import java.util.List;
 
@@ -10,6 +9,7 @@ import javax.inject.Inject;
 import me.dev.superavesome.musicplayer.data.DataSource;
 import me.dev.superavesome.musicplayer.model.Album;
 import me.dev.superavesome.musicplayer.model.Artist;
+import me.dev.superavesome.musicplayer.model.Genre;
 import me.dev.superavesome.musicplayer.model.Song;
 import rx.Observable;
 
@@ -47,7 +47,7 @@ public final class LocalDataSource implements DataSource {
     }
 
     @Override
-    public Observable<List<MediaStore.Audio.Genres>> getAllGenres() {
+    public Observable<List<Genre>> getAllGenres() {
         throw new IllegalStateException("NOT YET IMPLEMENTED");
     }
 }
