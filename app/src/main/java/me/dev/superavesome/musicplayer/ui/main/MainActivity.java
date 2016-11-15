@@ -1,4 +1,4 @@
-package me.dev.superavesome.musicplayer.main;
+package me.dev.superavesome.musicplayer.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +17,23 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import java.util.ArrayList;
 import java.util.List;
-import me.dev.superavesome.musicplayer.ArtistFragment;
-import me.dev.superavesome.musicplayer.BaseActivity;
-import me.dev.superavesome.musicplayer.R;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import me.dev.superavesome.musicplayer.R;
+import me.dev.superavesome.musicplayer.base.BaseActivity;
+import me.dev.superavesome.musicplayer.ui.albumList.AlbumsFragment;
+import me.dev.superavesome.musicplayer.ui.artistList.ArtistFragment;
+import me.dev.superavesome.musicplayer.ui.songList.SongListFragment;
+
+
+/**
+ * Home screen for our app will hold the drawer and
+ * songList, ArtistList and AlbumList in a same fragment
+ * */
 public class MainActivity extends BaseActivity {
 
   @Bind(R.id.toolbar) Toolbar toolbar;
@@ -44,6 +53,10 @@ public class MainActivity extends BaseActivity {
     setContentView(R.layout.activity_main);
     ButterKnife.bind(this);
 
+    setUpUI();
+  }
+
+  private void setUpUI() {
     setUpToolbar();
 
     setupDrawerContent(navigationView);
@@ -58,13 +71,17 @@ public class MainActivity extends BaseActivity {
     toolbar.setTitle(R.string.my_music);
 
     //Todo check making some weird animation
-    ActionBarDrawerToggle mDrawerToggle =
+    final ActionBarDrawerToggle mDrawerToggle =
         new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.my_music,
             R.string.my_music);
     drawerLayout.addDrawerListener(mDrawerToggle);
     mDrawerToggle.syncState();
 
     final ActionBar ab = getSupportActionBar();
+    if (ab == null) {
+      throw new IllegalStateException("action bar is null");
+    }
+
     ab.setHomeAsUpIndicator(R.drawable.ic_menu);
     ab.setDisplayHomeAsUpEnabled(true);
   }
@@ -91,10 +108,11 @@ public class MainActivity extends BaseActivity {
   }
 
   private void setupViewPager(ViewPager viewPager) {
-    Adapter adapter = new Adapter(getSupportFragmentManager());
+    final Adapter adapter = new Adapter(getSupportFragmentManager());
+    //todo make string constants probably a factory fragments
+    adapter.addFragment(new AlbumsFragment(), "Albums");
+    adapter.addFragment(new SongListFragment(), "Songs");
     adapter.addFragment(new ArtistFragment(), "Artists");
-    adapter.addFragment(new ArtistFragment(), "Songs");
-    adapter.addFragment(new ArtistFragment(), "Genre");
     viewPager.setAdapter(adapter);
   }
 

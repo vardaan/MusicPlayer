@@ -3,7 +3,7 @@ Features
 Basic
 
 # Browse and play your music by albums, artists, songs, playlist, folders
-# Support for all the music formats
+# Support for all the music formats(Almost)
 # Smart search to search your music properly
 # Shuffle support
 # Ability to edit or build your playlist
@@ -39,3 +39,4 @@ Screens
 
 #Splash made it
 
+Configure espresso,Roboelectric
