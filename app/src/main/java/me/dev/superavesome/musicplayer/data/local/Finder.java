@@ -1,26 +1,25 @@
-package me.dev.superavesome.musicplayer.data;
+package me.dev.superavesome.musicplayer.data.local;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.provider.MediaStore;
+
 import java.util.ArrayList;
+import java.util.List;
+
 import timber.log.Timber;
 
 abstract class Finder<T> {
 
   //todo make it efficient by using projection
-  private final Context context;
+  protected final Context context;
   private ArrayList<T> list;
 
   public Finder(Context context) {
     this.context = context;
   }
 
-  public ArrayList<T> getData() {
-    final Cursor cursor = context.getContentResolver()
-        .query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null,
-            MediaStore.Audio.Media.IS_MUSIC + "!=0", null,
-            MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
+  public List<T> getData() {
+    final Cursor cursor = getCursor();
     try {
       //If there is no path return an empty list
       if (cursor == null || !cursor.moveToFirst()) {
@@ -42,6 +41,8 @@ abstract class Finder<T> {
     }
     return list;
   }
+
+  protected abstract Cursor getCursor();
 
   protected abstract T buildSongFromCursor(Cursor cursor);
 }

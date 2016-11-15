@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+
 import me.dev.superavesome.musicplayer.Library;
 import me.dev.superavesome.musicplayer.Loader;
 import me.dev.superavesome.musicplayer.model.Song;
@@ -33,41 +34,47 @@ import timber.log.Timber;
  */
 public class SongsTask extends Loader<Song> {
 
-  public SongsTask(Context context, Object... params) {
-    super(context, params);
-  }
+    public SongsTask(Context context, Object... params) {
+        super(context, params);
+    }
 
-  @Override protected Song buildObject(@NonNull Cursor cursor) {
-    Song song = new Song.Builder().album(
-        cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM)))
-        .albumId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)))
-        .artist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)))
-        .artistId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID)))
-        .duration(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
-        .genre(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
-        .build();
-    Timber.d(song.toString());
-    return song;
-  }
+    @Override
+    protected Song buildObject(@NonNull Cursor cursor) {
+        Song song = new Song.Builder().album(
+                cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM)))
+                .albumId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID)))
+                .artist(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST)))
+                .artistId(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST_ID)))
+                .duration(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
+                .genre(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION)))
+                .build();
+        Timber.d(song.toString());
+        return song;
+    }
 
-  @Override protected Uri getUri() {
-    return MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-  }
+    @Override
+    protected Uri getUri() {
+        return MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+    }
 
-  @Override protected String getSelection() {
-    return MediaStore.Audio.Media.IS_MUSIC + "=1";
-  }
+    @Override
+    protected String getSelection() {
+        return MediaStore.Audio.Media.IS_MUSIC + "=1";
+    }
 
-  @Override protected String getSortOrder() {
-    return MediaStore.Audio.Media.DEFAULT_SORT_ORDER;
-  }
+    @Override
+    protected String getSortOrder() {
+        return MediaStore.Audio.Media.DEFAULT_SORT_ORDER;
+    }
 
-  @Override protected ContentObserver getObserver() {
-    return new ContentObserver(new Handler()) {
-      @Override public void onChange(boolean selfChange) {
-        super.onChange(selfChange);
-        update(Library.getSongs());
-      }
-    };
-  }
+    @Override
+    protected ContentObserver getObserver() {
+        return new ContentObserver(new Handler()) {
+            @Override
+            public void onChange(boolean selfChange) {
+                super.onChange(selfChange);
+                update(Library.getSongs());
+            }
+        };
+    }
 }

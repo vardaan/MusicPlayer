@@ -1,14 +1,22 @@
 package me.dev.superavesome.musicplayer.data;
 
 import android.provider.MediaStore;
+
 import java.util.List;
+
+import me.dev.superavesome.musicplayer.model.Album;
+import me.dev.superavesome.musicplayer.model.Artist;
 import me.dev.superavesome.musicplayer.model.Song;
+import rx.Observable;
 
 //todo add doc
 public interface DataSource {
-  List<Song> getAllSongs();
+    Observable<List<Song>> getAllSongs();
 
-  List<MediaStore.Audio.Artists> getAllArtist();
+    Observable<List<Album>> getAllAlbums();
 
-  List<MediaStore.Audio.Genres> getAllGenres();
+    Observable<List<Artist>> getAllArtist();
+
+    Observable<List<MediaStore.Audio.Genres>> getAllGenres();
+
 }

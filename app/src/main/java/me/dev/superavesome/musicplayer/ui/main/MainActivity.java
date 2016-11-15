@@ -17,13 +17,23 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseActivity;
+import me.dev.superavesome.musicplayer.ui.albumList.AlbumsFragment;
+import me.dev.superavesome.musicplayer.ui.artistList.ArtistFragment;
+import me.dev.superavesome.musicplayer.ui.songList.SongListFragment;
 
+
+/**
+ * Home screen for our app will hold the drawer and
+ * songList, ArtistList and AlbumList in a same fragment
+ * */
 public class MainActivity extends BaseActivity {
 
   @Bind(R.id.toolbar) Toolbar toolbar;
