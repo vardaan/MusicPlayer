@@ -1,13 +1,13 @@
 package me.dev.superavesome.musicplayer.model;
 
-import android.content.ContentUris;
 import android.net.Uri;
+
+import me.dev.superavesome.musicplayer.utils.Utils;
 
 /**
  * Created by Vardan sharma on 21/5/16.
  */
 public final class Album {
-    final Uri ART_CONTENT_URI = Uri.parse("content://media/external/audio/albumart");
     private final String artistName;
     private final String albumName;
     private final long id;
@@ -21,7 +21,7 @@ public final class Album {
         artistName = builder.artistName;
         albumName = builder.albumName;
         id = builder.id;
-        imageUri = ContentUris.withAppendedId(ART_CONTENT_URI, id);
+        imageUri = Utils.getImageUriFromId(String.valueOf(id));
     }
 
     public String getArtistName() {

@@ -16,6 +16,10 @@
 
 package me.dev.superavesome.musicplayer.model;
 
+import android.net.Uri;
+
+import me.dev.superavesome.musicplayer.utils.Utils;
+
 /**
  * Model for the Song
  */
@@ -29,6 +33,11 @@ public final class Song {
     private final String genre;
     private final String path;
     private final String title;
+    private Uri imageUri;
+
+    public Uri getImageUri() {
+        return imageUri;
+    }
 
     public String getTitle() {
         return title;
@@ -84,6 +93,7 @@ public final class Song {
         genre = builder.genre;
         path = builder.path;
         title = builder.title;
+        imageUri = Utils.getImageUriFromId(albumId);
     }
 
 

@@ -1,8 +1,6 @@
 package me.dev.superavesome.musicplayer.ui.songList;
 
-import android.content.ContentUris;
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +17,11 @@ import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.model.Song;
 
-import static java.lang.Long.parseLong;
-
-class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongVH> {
+class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.SongVH> {
     private final List<Song> songs;
-    final Uri ART_CONTENT_URI = Uri.parse("content://media/external/audio/albumart");
     private final Context context;
 
-    public SongAdapter(List<Song> songs, Context context) {
+    public SongListAdapter(List<Song> songs, Context context) {
       this.songs = songs;
       this.context = context;
     }
@@ -38,12 +33,11 @@ class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongVH> {
     }
 
     @Override public void onBindViewHolder(SongVH vh, int position) {
-      vh.txtArtist.setText(songs.get(position).getArtist());
-      vh.txtTitle.setText(songs.get(position).getTitle());
-      Uri albumArtUri =
-          ContentUris.withAppendedId(ART_CONTENT_URI, parseLong(songs.get(position).getAlbumId()));
+        final Song song = songs.get(position);
+        vh.txtArtist.setText(song.getArtist());
+      vh.txtTitle.setText(song.getTitle());
       Picasso.with(context)
-          .load(albumArtUri)
+          .load(song.getImageUri())
           .error(R.drawable.placeholder_with_padding)
           .into(vh.imageView);
     }

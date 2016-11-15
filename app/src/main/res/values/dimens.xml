@@ -1,5 +1,13 @@
 <resources>
-  <!-- Default screen margins, per the Android Design guidelines. -->
-  <dimen name="activity_horizontal_margin">16dp</dimen>
-  <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="margin.xlarge">32dp</dimen>
+    <dimen name="margin.large">24dp</dimen>
+    <dimen name="margin.regular">16dp</dimen>
+    <dimen name="margin.medium">8dp</dimen>
+    <dimen name="margin.small">4dp</dimen>
+    <dimen name="margin.micro">2dp</dimen>
+    <dimen name="song_image_size">48dp</dimen>
 </resources>

@@ -34,8 +34,8 @@ public class SongListFragment extends BaseFragment implements SongListContract.V
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         DaggerSongListComponent.builder()
-                .appComponent(getAppComponent())
                 .songListModule(new SongListModule(this))
+                .appComponent(getAppComponent())
                 .build().inject(this);
     }
 
@@ -47,7 +47,6 @@ public class SongListFragment extends BaseFragment implements SongListContract.V
         ButterKnife.bind(this, view);
 
         rvSongs.setLayoutManager(new LinearLayoutManager(getActivity()));
-
 
         presenter.getSongList();
 
@@ -64,7 +63,7 @@ public class SongListFragment extends BaseFragment implements SongListContract.V
 
     @Override
     public void showSongList(List<Song> songs) {
-        final SongAdapter adapter = new SongAdapter(songs, getActivity());
+        final SongListAdapter adapter = new SongListAdapter(songs, getActivity());
         rvSongs.setAdapter(adapter);
     }
 }
