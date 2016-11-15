@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    android:clickable="true"
+    android:padding="16dp"
+    android:background="?attr/selectableItemBackground">
   <TextView
       android:layout_width="wrap_content"
-      android:layout_marginLeft="16dp"
-      android:layout_marginBottom="4dp"
-      android:layout_marginTop="16dp"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-      android:text="Large Text"
+      android:ellipsize="end"
+      android:maxLines="2"
+      tools:text="Large Text"
       android:id="@+id/txt_artist_name"
       />
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:textAppearance="@style/TextAppearance.AppCompat.Small"
-      android:text="Small Text"
-      android:layout_marginLeft="16dp"
+      tools:text="Small Text"
+      android:ellipsize="end"
       android:id="@+id/txt_artist_info"
-      android:layout_below="@+id/textView"
       />
 </LinearLayout>

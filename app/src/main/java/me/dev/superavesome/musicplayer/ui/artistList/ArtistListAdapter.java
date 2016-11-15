@@ -14,11 +14,11 @@ import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.model.Artist;
 
-class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistVH> {
+class ArtistListAdapter extends RecyclerView.Adapter<ArtistListAdapter.ArtistVH> {
     private final List<Artist> artists;
     private final Context context;
 
-    ArtistAdapter(List<Artist> artists, Context context) {
+    ArtistListAdapter(List<Artist> artists, Context context) {
         this.artists = artists;
         this.context = context;
     }
@@ -35,6 +35,7 @@ class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistVH> {
         final Artist artist = artists.get(position);
 
         vh.txtArtistName.setText(artist.getName());
+        //todo use String builder
         String artistInfo = String.valueOf(artist.getNumAlbums()) +
                 ((artist.getNumAlbums() > 1) ? " Albums  " : " Album  ") +
                 artist.getNumTracks() +
@@ -47,14 +48,14 @@ class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistVH> {
         return artists.size();
     }
 
-    public static class ArtistVH extends RecyclerView.ViewHolder {
+    static class ArtistVH extends RecyclerView.ViewHolder {
 
         @Bind(R.id.txt_artist_name)
         TextView txtArtistName;
         @Bind(R.id.txt_artist_info)
         TextView txtArtistInfo;
 
-        public ArtistVH(View itemView) {
+        ArtistVH(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

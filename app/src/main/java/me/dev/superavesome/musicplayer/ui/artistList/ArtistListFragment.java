@@ -56,6 +56,6 @@ public class ArtistListFragment extends BaseFragment implements ArtistListContra
 
     @Override
     public void showData(List<Artist> artists) {
-        rvArtists.setAdapter(new ArtistAdapter(artists, getActivity()));
+        rvArtists.setAdapter(new ArtistListAdapter(artists, getActivity()));
     }
 }
