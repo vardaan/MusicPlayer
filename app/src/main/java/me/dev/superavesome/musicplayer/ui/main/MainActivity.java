@@ -118,15 +118,16 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        final List<? extends Fragment> fragments
+        List<? extends Fragment> fragments
                 = Arrays.asList(new AlbumListFragment(), new SongListFragment(), new ArtistListFragment());
         final List<String> titles = Arrays.asList("Albums", "Songs", "Artists");
         final Adapter adapter = new Adapter(getSupportFragmentManager(), fragments, titles);
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(fragments.size());
     }
 
     static class Adapter extends FragmentPagerAdapter {
-        private final List<? extends Fragment> fragments;
+        private  List<? extends Fragment> fragments;
         private final List<String> titles;
 
         public Adapter(FragmentManager fm, List<? extends Fragment> fragments, List<String> titles) {
