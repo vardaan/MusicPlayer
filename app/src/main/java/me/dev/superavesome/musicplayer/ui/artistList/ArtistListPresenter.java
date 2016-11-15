@@ -18,7 +18,7 @@ import static me.dev.superavesome.musicplayer.utils.Preconditions.checkNotNull;
 /**
  * Created by vardansharma on 15/11/16.
  */
-public class ArtistListPresenter implements ArtistListContract.Presenter {
+class ArtistListPresenter implements ArtistListContract.Presenter {
     private GetAllArtistUseCase useCase;
     private ArtistListContract.View view;
     private CompositeSubscription subscription;

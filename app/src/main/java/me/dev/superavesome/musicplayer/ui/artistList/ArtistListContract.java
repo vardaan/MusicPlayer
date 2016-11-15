@@ -10,7 +10,7 @@ import me.dev.superavesome.musicplayer.model.Artist;
  * Created by vardansharma on 15/11/16.
  */
 
-public class ArtistListContract {
+class ArtistListContract {
     interface View extends BaseView {
         void showData(List<Artist> artists);
     }

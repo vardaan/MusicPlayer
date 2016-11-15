@@ -24,19 +24,19 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public Context provideContext() {
+    Context provideContext() {
         return application;
     }
 
     @Provides
     @Singleton
-    public Application provideApplication() {
+    Application provideApplication() {
         return application;
     }
 
     @Provides
     @Singleton
-    public SharedPreferences provideSharedPreferences(Context context) {
+    SharedPreferences provideSharedPreferences(Context context) {
         return context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
     }
 }

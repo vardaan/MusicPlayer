@@ -13,19 +13,19 @@ import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCase;
 public class ArtistModule {
     private ArtistListContract.View view;
 
-    public ArtistModule(ArtistListContract.View view) {
+    ArtistModule(ArtistListContract.View view) {
         this.view = view;
     }
 
     @ActivityScope
     @Provides
-    public ArtistListContract.View provideView() {
+    ArtistListContract.View provideView() {
         return view;
     }
 
     @Provides
     @ActivityScope
-    public ArtistListPresenter provideArtistListPresenter(ArtistListContract.View view, GetAllArtistUseCase useCase){
+    ArtistListPresenter provideArtistListPresenter(ArtistListContract.View view, GetAllArtistUseCase useCase){
         return new ArtistListPresenter(view,useCase);
     }
 }

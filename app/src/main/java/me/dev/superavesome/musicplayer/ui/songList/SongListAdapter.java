@@ -21,7 +21,7 @@ class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.SongVH> {
     private final List<Song> songs;
     private final Context context;
 
-    public SongListAdapter(List<Song> songs, Context context) {
+    SongListAdapter(List<Song> songs, Context context) {
       this.songs = songs;
       this.context = context;
     }

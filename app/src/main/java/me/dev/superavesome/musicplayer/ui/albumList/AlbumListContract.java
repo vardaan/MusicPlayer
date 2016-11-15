@@ -10,7 +10,7 @@ import me.dev.superavesome.musicplayer.model.Album;
  * Created by vardansharma on 15/11/16.
  */
 
-public class AlbumListContract {
+class AlbumListContract {
     interface Presenter extends BasePresenter {
         void getAlbums();
     }

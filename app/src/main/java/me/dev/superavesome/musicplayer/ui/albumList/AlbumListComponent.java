@@ -9,7 +9,7 @@ import me.dev.superavesome.musicplayer.di.component.AppComponent;
  */
 @ActivityScope
 @Component(dependencies = AppComponent.class, modules = AlbumListModule.class)
-public interface AlbumListComponent {
+interface AlbumListComponent {
     void inject(AlbumListFragment target);
 
     AlbumListPresenter provideAlbumListPresenter();
