@@ -12,6 +12,10 @@ import rx.Observable;
 public class GetAllArtistUseCaseImpl implements GetAllArtistUseCase {
     private DataSource dataSource;
 
+    public GetAllArtistUseCaseImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Override
     public Observable<List<Artist>> getAllArtistUseCase() {
         return dataSource.getAllArtist();

@@ -11,7 +11,7 @@ import me.dev.superavesome.musicplayer.model.Album;
  */
 
 public class AlbumListContract {
-    interface Presenter extends BasePresenter {
+    interface Presenter<V> extends BasePresenter<V> {
         void getAlbums();
     }
 

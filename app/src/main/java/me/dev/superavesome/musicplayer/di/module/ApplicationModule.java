@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,16 +23,20 @@ public class ApplicationModule {
     }
 
     @Provides
-    public Context provideContext(){
+    @Singleton
+    public Context provideContext() {
         return application;
     }
 
     @Provides
-    public Application provideApplication(){
+    @Singleton
+    public Application provideApplication() {
         return application;
     }
+
     @Provides
-    public SharedPreferences provideSharedPreferences(Context context){
-        return context.getSharedPreferences(prefName,Context.MODE_PRIVATE);
+    @Singleton
+    public SharedPreferences provideSharedPreferences(Context context) {
+        return context.getSharedPreferences(prefName, Context.MODE_PRIVATE);
     }
 }

@@ -6,17 +6,19 @@ import javax.inject.Inject;
 
 import me.dev.superavesome.musicplayer.domain.GetAllAlbumsUseCase;
 import me.dev.superavesome.musicplayer.model.Album;
-import me.dev.superavesome.musicplayer.utils.RxUtils;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
+import static me.dev.superavesome.musicplayer.utils.Preconditions.checkNotNull;
+import static me.dev.superavesome.musicplayer.utils.RxUtils.unSubscribe;
+
 /**
  * Created by vardansharma on 15/11/16.
  */
-public class AlbumListPresenter implements AlbumListContract.Presenter {
+public class AlbumListPresenter implements AlbumListContract.Presenter<AlbumListContract.View> {
 
     private GetAllAlbumsUseCase getAllAlbumsUseCaseUseCase;
     private AlbumListContract.View view;
@@ -48,12 +50,13 @@ public class AlbumListPresenter implements AlbumListContract.Presenter {
     }
 
     @Override
-    public void attachToUi() {
-
+    public void attachToUi(AlbumListContract.View view) {
+        checkNotNull(view, "view is not null");
+        this.view = view;
     }
 
     @Override
     public void detachFromUi() {
-        RxUtils.unSubscribe(subscription);
+        unSubscribe(subscription);
     }
 }

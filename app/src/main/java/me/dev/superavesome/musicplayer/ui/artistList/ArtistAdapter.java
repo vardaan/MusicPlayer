@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,10 +15,10 @@ import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.model.Artist;
 
 class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistVH> {
-    private final ArrayList<Artist> artists;
+    private final List<Artist> artists;
     private final Context context;
 
-    ArtistAdapter(ArrayList<Artist> artists, Context context) {
+    ArtistAdapter(List<Artist> artists, Context context) {
         this.artists = artists;
         this.context = context;
     }

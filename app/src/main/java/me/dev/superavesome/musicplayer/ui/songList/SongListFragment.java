@@ -1,6 +1,7 @@
 package me.dev.superavesome.musicplayer.ui.songList;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +11,12 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
+import me.dev.superavesome.musicplayer.base.BaseApp;
 import me.dev.superavesome.musicplayer.model.Song;
 
 public class SongListFragment extends Fragment implements SongListContract.View {
@@ -20,8 +24,18 @@ public class SongListFragment extends Fragment implements SongListContract.View 
     @Bind(R.id.rv_songs)
     RecyclerView rvSongs;
 
+    @Inject
+    SongListPresenter presenter;
+
     public SongListFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        BaseApp baseApp = (BaseApp) getActivity().getApplication();
+        baseApp.getApplicationComponent().inject(this);
     }
 
     @Override
@@ -34,6 +48,9 @@ public class SongListFragment extends Fragment implements SongListContract.View 
         rvSongs.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
+        presenter.attachToUi(this);
+        presenter.getSongList();
+
         return view;
     }
 
@@ -41,6 +58,7 @@ public class SongListFragment extends Fragment implements SongListContract.View 
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        presenter.detachFromUi();
     }
 
 
