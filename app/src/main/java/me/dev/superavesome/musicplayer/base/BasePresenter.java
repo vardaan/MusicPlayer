@@ -5,7 +5,5 @@ package me.dev.superavesome.musicplayer.base;
  */
 
 public interface BasePresenter<V> {
-    void attachToUi(V view);
-
     void detachFromUi();
 }

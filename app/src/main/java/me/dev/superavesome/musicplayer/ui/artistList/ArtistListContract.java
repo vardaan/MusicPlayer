@@ -15,7 +15,7 @@ public class ArtistListContract {
         void showData(List<Artist> artists);
     }
 
-    interface Presenter<V> extends BasePresenter<V> {
+    interface Presenter extends BasePresenter {
         void getArtistList();
     }
 }

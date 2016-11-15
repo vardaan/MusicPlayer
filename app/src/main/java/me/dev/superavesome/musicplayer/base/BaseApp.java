@@ -3,8 +3,8 @@ package me.dev.superavesome.musicplayer.base;
 import android.app.Application;
 
 import me.dev.superavesome.musicplayer.R;
-import me.dev.superavesome.musicplayer.di.component.ApplicationComponent;
-import me.dev.superavesome.musicplayer.di.component.DaggerApplicationComponent;
+import me.dev.superavesome.musicplayer.di.component.AppComponent;
+import me.dev.superavesome.musicplayer.di.component.DaggerAppComponent;
 import me.dev.superavesome.musicplayer.di.module.ApplicationModule;
 import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -14,10 +14,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Base application for our application enables calligraphy
  */
 public class BaseApp extends Application {
-    private ApplicationComponent applicationComponent;
+    private AppComponent applicationComponent;
 
-    public ApplicationComponent getApplicationComponent() {
-        return DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(this))
+    public AppComponent getApplicationComponent() {
+        return DaggerAppComponent.builder().applicationModule(new ApplicationModule(this))
                 .build();
     }
 

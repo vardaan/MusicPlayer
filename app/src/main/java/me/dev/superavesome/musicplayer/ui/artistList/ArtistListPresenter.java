@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCase;
 import me.dev.superavesome.musicplayer.model.Artist;
-import me.dev.superavesome.musicplayer.utils.Preconditions;
 import me.dev.superavesome.musicplayer.utils.RxUtils;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -14,17 +13,20 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
+import static me.dev.superavesome.musicplayer.utils.Preconditions.checkNotNull;
+
 /**
  * Created by vardansharma on 15/11/16.
  */
-public class ArtistListPresenter implements ArtistListContract.Presenter<ArtistListContract.View> {
+public class ArtistListPresenter implements ArtistListContract.Presenter {
     private GetAllArtistUseCase useCase;
     private ArtistListContract.View view;
     private CompositeSubscription subscription;
 
     @Inject
-    public ArtistListPresenter(GetAllArtistUseCase useCase) {
-        this.useCase = useCase;
+    public ArtistListPresenter(ArtistListContract.View view, GetAllArtistUseCase useCase) {
+        this.useCase = checkNotNull(useCase, "GetAllArtistUseCase is null");
+        this.view = checkNotNull(view, "ArtistListContract.view is null");
         this.subscription = new CompositeSubscription();
     }
 
@@ -44,12 +46,6 @@ public class ArtistListPresenter implements ArtistListContract.Presenter<ArtistL
                         Timber.e(throwable.getMessage());
                     }
                 });
-    }
-
-    @Override
-    public void attachToUi(ArtistListContract.View view) {
-        Preconditions.checkNotNull(view, "view is null");
-        this.view = view;
     }
 
     @Override
