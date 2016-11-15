@@ -25,8 +25,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseActivity;
-import me.dev.superavesome.musicplayer.ui.albumList.AlbumsFragment;
-import me.dev.superavesome.musicplayer.ui.artistList.ArtistFragment;
+import me.dev.superavesome.musicplayer.ui.albumList.AlbumListFragment;
+import me.dev.superavesome.musicplayer.ui.artistList.ArtistListFragment;
 import me.dev.superavesome.musicplayer.ui.songList.SongListFragment;
 
 
@@ -110,9 +110,9 @@ public class MainActivity extends BaseActivity {
   private void setupViewPager(ViewPager viewPager) {
     final Adapter adapter = new Adapter(getSupportFragmentManager());
     //todo make string constants probably a factory fragments
-    adapter.addFragment(new AlbumsFragment(), "Albums");
+    adapter.addFragment(new AlbumListFragment(), "Albums");
     adapter.addFragment(new SongListFragment(), "Songs");
-    adapter.addFragment(new ArtistFragment(), "Artists");
+    adapter.addFragment(new ArtistListFragment(), "Artists");
     viewPager.setAdapter(adapter);
   }
 

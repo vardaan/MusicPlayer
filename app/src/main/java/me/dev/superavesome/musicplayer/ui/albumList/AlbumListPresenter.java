@@ -18,15 +18,16 @@ import static me.dev.superavesome.musicplayer.utils.RxUtils.unSubscribe;
 /**
  * Created by vardansharma on 15/11/16.
  */
-public class AlbumListPresenter implements AlbumListContract.Presenter<AlbumListContract.View> {
+public class AlbumListPresenter implements AlbumListContract.Presenter {
 
     private GetAllAlbumsUseCase getAllAlbumsUseCaseUseCase;
     private AlbumListContract.View view;
     private CompositeSubscription subscription;
 
     @Inject
-    public AlbumListPresenter(GetAllAlbumsUseCase getAllAlbumsUseCaseUseCase) {
-        this.getAllAlbumsUseCaseUseCase = getAllAlbumsUseCaseUseCase;
+    public AlbumListPresenter(AlbumListContract.View view, GetAllAlbumsUseCase useCase) {
+        this.getAllAlbumsUseCaseUseCase = checkNotNull(useCase, "usecase is null");
+        this.view = checkNotNull(view, "view is null");
         subscription = new CompositeSubscription();
     }
 
@@ -49,11 +50,6 @@ public class AlbumListPresenter implements AlbumListContract.Presenter<AlbumList
                 }));
     }
 
-    @Override
-    public void attachToUi(AlbumListContract.View view) {
-        checkNotNull(view, "view is not null");
-        this.view = view;
-    }
 
     @Override
     public void detachFromUi() {

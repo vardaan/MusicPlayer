@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import dagger.Module;
 import dagger.Provides;
-import me.dev.superavesome.musicplayer.di.PerActivity;
+import me.dev.superavesome.musicplayer.di.ActivityScope;
 
 /**
  * Created by vardansharma on 15/11/16.
@@ -21,7 +21,7 @@ public class ActivityModule {
      * Expose the activity to dependents in the graph.
      */
     @Provides
-    @PerActivity
+    @ActivityScope
     Activity activity() {
         return this.activity;
     }

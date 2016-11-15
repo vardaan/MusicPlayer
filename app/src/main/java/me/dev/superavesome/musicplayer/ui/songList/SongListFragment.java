@@ -2,7 +2,6 @@ package me.dev.superavesome.musicplayer.ui.songList;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,10 +15,10 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
-import me.dev.superavesome.musicplayer.base.BaseApp;
+import me.dev.superavesome.musicplayer.base.BaseFragment;
 import me.dev.superavesome.musicplayer.model.Song;
 
-public class SongListFragment extends Fragment implements SongListContract.View {
+public class SongListFragment extends BaseFragment implements SongListContract.View {
 
     @Bind(R.id.rv_songs)
     RecyclerView rvSongs;
@@ -34,8 +33,10 @@ public class SongListFragment extends Fragment implements SongListContract.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BaseApp baseApp = (BaseApp) getActivity().getApplication();
-        baseApp.getApplicationComponent().inject(this);
+        DaggerSongListComponent.builder()
+                .appComponent(getAppComponent())
+                .songListModule(new SongListModule(this))
+                .build().inject(this);
     }
 
     @Override
@@ -48,7 +49,6 @@ public class SongListFragment extends Fragment implements SongListContract.View 
         rvSongs.setLayoutManager(new LinearLayoutManager(getActivity()));
 
 
-        presenter.attachToUi(this);
         presenter.getSongList();
 
         return view;
@@ -66,30 +66,5 @@ public class SongListFragment extends Fragment implements SongListContract.View 
     public void showSongList(List<Song> songs) {
         final SongAdapter adapter = new SongAdapter(songs, getActivity());
         rvSongs.setAdapter(adapter);
-    }
-
-    @Override
-    public void showLoading() {
-        //todo
-    }
-
-    @Override
-    public void hideLoading() {
-        //todo
-    }
-
-    @Override
-    public void showEmptyScreen() {
-        //todo
-    }
-
-    @Override
-    public void hideEmptyScreen() {
-        //todo
-    }
-
-    @Override
-    public void showErrorScreen() {
-        //todo
     }
 }
