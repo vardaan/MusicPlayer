@@ -1,14 +1,10 @@
 package me.dev.superavesome.musicplayer.ui.artistList;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCase;
-import me.dev.superavesome.musicplayer.model.Artist;
 import me.dev.superavesome.musicplayer.utils.RxUtils;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
@@ -35,16 +31,10 @@ class ArtistListPresenter implements ArtistListContract.Presenter {
         useCase.getAllArtistUseCase()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<Artist>>() {
-                    @Override
-                    public void call(List<Artist> artists) {
-                        view.showData(artists);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        Timber.e(throwable.getMessage());
-                    }
+                .subscribe(artists -> {
+                    view.showData(artists);
+                }, throwable -> {
+                    Timber.e(throwable.getMessage());
                 });
     }
 

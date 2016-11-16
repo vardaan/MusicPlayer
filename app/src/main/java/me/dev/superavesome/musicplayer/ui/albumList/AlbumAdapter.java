@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.model.Album;
@@ -67,13 +67,13 @@ class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumVH> {
 
     static class AlbumVH extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.img_album)
+        @BindView(R.id.img_album)
         ImageView imgAlbum;
-        @Bind(R.id.txt_artist)
+        @BindView(R.id.txt_artist)
         TextView txtArtist;
-        @Bind(R.id.txt_album)
+        @BindView(R.id.txt_album)
         TextView txtAlbum;
-        @Bind(R.id.container)
+        @BindView(R.id.container)
         LinearLayout container;
 
         AlbumVH(View itemView) {

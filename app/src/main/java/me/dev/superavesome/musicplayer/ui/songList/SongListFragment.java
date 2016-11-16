@@ -12,19 +12,21 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseFragment;
 import me.dev.superavesome.musicplayer.model.Song;
 
 public class SongListFragment extends BaseFragment implements SongListContract.View {
 
-    @Bind(R.id.rv_songs)
+    @BindView(R.id.rv_songs)
     RecyclerView rvSongs;
 
     @Inject
     SongListPresenter presenter;
+    private Unbinder unbinder;
 
     public SongListFragment() {
         // Required empty public constructor
@@ -44,7 +46,7 @@ public class SongListFragment extends BaseFragment implements SongListContract.V
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_song_list, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         rvSongs.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -56,7 +58,7 @@ public class SongListFragment extends BaseFragment implements SongListContract.V
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
         presenter.detachFromUi();
     }
 

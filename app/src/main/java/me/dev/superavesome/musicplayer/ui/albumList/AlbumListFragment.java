@@ -13,8 +13,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseFragment;
 import me.dev.superavesome.musicplayer.model.Album;
@@ -23,11 +24,12 @@ import me.dev.superavesome.musicplayer.model.Album;
  */
 public class AlbumListFragment extends BaseFragment implements AlbumListContract.View {
 
-    @Bind(R.id.rv_albums)
+    @BindView(R.id.rv_albums)
     RecyclerView rvAlbums;
 
     @Inject
     AlbumListPresenter presenter;
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class AlbumListFragment extends BaseFragment implements AlbumListContract
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_albums, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         final FragmentActivity activity = getActivity();
 
         rvAlbums.setLayoutManager(new GridLayoutManager(activity, 2));
@@ -58,7 +60,7 @@ public class AlbumListFragment extends BaseFragment implements AlbumListContract
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+        unbinder.unbind();
         presenter.detachFromUi();
     }
 

@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.model.Song;
@@ -45,14 +45,14 @@ class SongListAdapter extends RecyclerView.Adapter<SongListAdapter.SongVH> {
     @Override public int getItemCount() {
       return songs.size();
     }
-    public static class SongVH extends RecyclerView.ViewHolder {
-        @Bind(R.id.img_song)
+    static class SongVH extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_song)
         ImageView imageView;
-        @Bind(R.id.txt_title)
+        @BindView(R.id.txt_title)
         TextView txtTitle;
-        @Bind(R.id.txt_artist) TextView txtArtist;
+        @BindView(R.id.txt_artist) TextView txtArtist;
 
-        public SongVH(View itemView) {
+        SongVH(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

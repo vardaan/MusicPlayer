@@ -21,7 +21,7 @@ import android.view.MenuItem;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseActivity;
@@ -36,19 +36,19 @@ import me.dev.superavesome.musicplayer.ui.songList.SongListFragment;
  */
 public class MainActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.tabs)
+    @BindView(R.id.tabs)
     TabLayout tabs;
-    @Bind(R.id.appbar)
+    @BindView(R.id.appbar)
     AppBarLayout appbar;
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager viewpager;
-    @Bind(R.id.main_content)
+    @BindView(R.id.main_content)
     CoordinatorLayout mainContent;
-    @Bind(R.id.navigation)
+    @BindView(R.id.navigation)
     NavigationView navigationView;
-    @Bind(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     public static Intent createIntent(Context context) {
@@ -107,13 +107,10 @@ public class MainActivity extends BaseActivity {
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        drawerLayout.closeDrawers();
-                        return true;
-                    }
+                menuItem -> {
+                    menuItem.setChecked(true);
+                    drawerLayout.closeDrawers();
+                    return true;
                 });
     }
 
@@ -130,7 +127,7 @@ public class MainActivity extends BaseActivity {
         private  List<? extends Fragment> fragments;
         private final List<String> titles;
 
-        public Adapter(FragmentManager fm, List<? extends Fragment> fragments, List<String> titles) {
+        Adapter(FragmentManager fm, List<? extends Fragment> fragments, List<String> titles) {
             super(fm);
             this.fragments = fragments;
             this.titles = titles;

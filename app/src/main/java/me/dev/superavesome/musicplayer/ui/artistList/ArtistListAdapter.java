@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.model.Artist;
@@ -50,9 +50,9 @@ class ArtistListAdapter extends RecyclerView.Adapter<ArtistListAdapter.ArtistVH>
 
     static class ArtistVH extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.txt_artist_name)
+        @BindView(R.id.txt_artist_name)
         TextView txtArtistName;
-        @Bind(R.id.txt_artist_info)
+        @BindView(R.id.txt_artist_info)
         TextView txtArtistInfo;
 
         ArtistVH(View itemView) {
