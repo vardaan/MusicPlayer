@@ -2,8 +2,11 @@ package me.dev.superavesome.musicplayer.utils;
 
 import android.support.annotation.Nullable;
 
+import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -39,6 +42,18 @@ public class RxUtils {
         if (subscription != null && !subscription.isUnsubscribed()) {
             subscription.unsubscribe();
         }
+    }
+
+    /**
+     * Returns observable which subscribes on io thread and observes on
+     * main thread.
+     * <p>
+     * Use it in .compose() function, it just returns a transformed observable
+     * which subscribes and observes on given thread.
+     */
+    public static <T> Observable.Transformer<T, T> applyIOScheduler() {
+        return tObservable -> tObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 

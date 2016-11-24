@@ -2,6 +2,8 @@ package me.dev.superavesome.musicplayer.base;
 
 import android.app.Application;
 
+import com.squareup.leakcanary.LeakCanary;
+
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.di.component.AppComponent;
 import me.dev.superavesome.musicplayer.di.component.DaggerAppComponent;
@@ -33,5 +35,13 @@ public class BaseApp extends Application {
 
         //enabling Timber
         Timber.plant(new Timber.DebugTree());//todo refactor add else statement
+
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return;
+        }
+        LeakCanary.install(this);
+
     }
 }
