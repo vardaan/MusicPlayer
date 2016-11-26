@@ -23,6 +23,10 @@ public class SongFinder extends Finder<Song> {
                         MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
     }
 
+    public void getSongsByAllArtist() {
+
+    }
+
     @Override
     public Song buildObjectFromCursor(Cursor cursor) {
         return new Song.Builder().album(

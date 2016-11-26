@@ -34,4 +34,19 @@ public class RemoteDataSource implements DataSource {
     public Observable<List<Genre>> getAllGenres() {
         throw new IllegalStateException("NOT YET IMPLEMENTED");
     }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromGenre(String genreId) {
+        throw new IllegalStateException("NOT YET IMPLEMENTED");
+    }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromArtist(String artistId) {
+        throw new IllegalStateException("NOT YET IMPLEMENTED");
+    }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromAlbum(String albumId) {
+        throw new IllegalStateException("NOT YET IMPLEMENTED");
+    }
 }

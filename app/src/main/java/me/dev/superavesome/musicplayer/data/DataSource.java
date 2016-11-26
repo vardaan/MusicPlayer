@@ -18,4 +18,9 @@ public interface DataSource {
 
     Observable<List<Genre>> getAllGenres();
 
+    Observable <List<Song>> getAllSongsFromGenre(String genreId);
+
+    Observable<List<Song>>  getAllSongsFromArtist(String artistId);
+
+    Observable<List<Song>> getAllSongsFromAlbum(String albumId);
 }

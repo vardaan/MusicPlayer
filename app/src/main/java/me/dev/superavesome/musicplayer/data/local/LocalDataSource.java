@@ -52,4 +52,19 @@ public final class LocalDataSource implements DataSource {
     public Observable<List<Genre>> getAllGenres() {
         return Observable.just(genreFinder.getData());
     }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromGenre(String genreId) {
+        throw new IllegalStateException("not yet implemented");
+    }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromArtist(String artistId) {
+        throw new IllegalStateException("not yet implemented");
+    }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromAlbum(String albumId) {
+        throw new IllegalStateException("not yet implemented");
+    }
 }

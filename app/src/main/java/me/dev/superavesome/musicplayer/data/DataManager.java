@@ -43,4 +43,19 @@ public class DataManager implements DataSource {
     public Observable<List<Genre>> getAllGenres() {
         return localDataSource.getAllGenres();
     }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromGenre(String genreId) {
+        return localDataSource.getAllSongsFromGenre(genreId);
+    }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromArtist( String artistId) {
+        return localDataSource.getAllSongsFromGenre(artistId);
+    }
+
+    @Override
+    public Observable<List<Song>> getAllSongsFromAlbum(String albumId) {
+        return localDataSource.getAllSongsFromAlbum(albumId);
+    }
 }
