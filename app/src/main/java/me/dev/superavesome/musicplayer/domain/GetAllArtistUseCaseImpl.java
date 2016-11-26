@@ -9,6 +9,7 @@ import rx.Observable;
 /**
  * Created by vardansharma on 15/11/16.
  */
+
 public class GetAllArtistUseCaseImpl implements GetAllArtistUseCase {
     private DataSource dataSource;
 

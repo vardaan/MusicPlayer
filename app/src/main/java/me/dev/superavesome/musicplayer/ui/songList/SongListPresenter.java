@@ -4,8 +4,6 @@ import javax.inject.Inject;
 
 import me.dev.superavesome.musicplayer.domain.GetAllSongsUseCase;
 import me.dev.superavesome.musicplayer.utils.RxUtils;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
@@ -22,20 +20,20 @@ class SongListPresenter implements SongListContract.Presenter<SongListContract.V
 
     @Inject
     SongListPresenter(SongListContract.View view, GetAllSongsUseCase useCase) {
-        this.useCase = checkNotNull(useCase,"GetAllSongsUseCase is null");
-        this.view = checkNotNull(view,"SongListContract.View is null");
+        this.useCase = checkNotNull(useCase, "GetAllSongsUseCase is null");
+        this.view = checkNotNull(view, "SongListContract.View is null");
         subscriptions = new CompositeSubscription();
     }
 
     @Override
     public void getSongList() {
         subscriptions.add(useCase.getAllSongs()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.applyIOScheduler())
                 .subscribe(songs -> {
                     view.showSongList(songs);
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
+                    view.showErrorScreen();
                 }));
     }
 

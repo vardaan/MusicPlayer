@@ -29,7 +29,7 @@ abstract class Finder<T> {
       list = new ArrayList<>(cursor.getCount());
       //If there is path then continue
       do {
-        final T data = buildSongFromCursor(cursor);
+        final T data = buildObjectFromCursor(cursor);
         //obj.setPosInList(cursor.getPosition()).setContext(getContext()).lock(); //todo do why this
         Timber.d(data.toString());
         list.add(data);
@@ -44,5 +44,5 @@ abstract class Finder<T> {
 
   protected abstract Cursor getCursor();
 
-  protected abstract T buildSongFromCursor(Cursor cursor);
+  protected abstract T buildObjectFromCursor(Cursor cursor);
 }

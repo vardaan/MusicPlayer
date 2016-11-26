@@ -4,8 +4,6 @@ import javax.inject.Inject;
 
 import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCase;
 import me.dev.superavesome.musicplayer.utils.RxUtils;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
@@ -14,6 +12,7 @@ import static me.dev.superavesome.musicplayer.utils.Preconditions.checkNotNull;
 /**
  * Created by vardansharma on 15/11/16.
  */
+
 class ArtistListPresenter implements ArtistListContract.Presenter {
     private GetAllArtistUseCase useCase;
     private ArtistListContract.View view;
@@ -29,12 +28,12 @@ class ArtistListPresenter implements ArtistListContract.Presenter {
     @Override
     public void getArtistList() {
         useCase.getAllArtistUseCase()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.applyIOScheduler() )
                 .subscribe(artists -> {
                     view.showData(artists);
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
+                    view.showErrorScreen();
                 });
     }
 

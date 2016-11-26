@@ -29,11 +29,10 @@ public class GenreFinder extends Finder<Genre> {
     }
 
     @Override
-    protected Genre buildSongFromCursor(Cursor cursor) {
+    protected Genre buildObjectFromCursor(Cursor cursor) {
         return new Genre.Builder()
                 .name(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Genres.NAME)))
                 .id(cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Genres._ID)))
-                .numOfTracks(cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Genres._COUNT)))
                 .build();
     }
 }

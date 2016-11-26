@@ -9,6 +9,7 @@ import dagger.Provides;
 import me.dev.superavesome.musicplayer.data.DataManager;
 import me.dev.superavesome.musicplayer.data.local.AlbumFinder;
 import me.dev.superavesome.musicplayer.data.local.ArtistFinder;
+import me.dev.superavesome.musicplayer.data.local.GenreFinder;
 import me.dev.superavesome.musicplayer.data.local.LocalDataSource;
 import me.dev.superavesome.musicplayer.data.local.SongFinder;
 import me.dev.superavesome.musicplayer.data.remote.RemoteDataSource;
@@ -22,8 +23,9 @@ public class DataModule {
     @Provides
     @Singleton
     LocalDataSource providesLocalDataSource(Context context, ArtistFinder artistFinder,
-                                            AlbumFinder albumFinder, SongFinder songFinder) {
-        return new LocalDataSource(context, albumFinder, artistFinder);
+                                            AlbumFinder albumFinder, SongFinder songFinder,
+                                            GenreFinder genreFinder) {
+        return new LocalDataSource(context, albumFinder, artistFinder, genreFinder);
     }
 
     @Provides

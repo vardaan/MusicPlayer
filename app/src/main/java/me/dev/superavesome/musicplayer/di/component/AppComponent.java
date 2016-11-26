@@ -12,6 +12,7 @@ import me.dev.superavesome.musicplayer.di.module.DomainModule;
 import me.dev.superavesome.musicplayer.di.module.LocalDataStoreModule;
 import me.dev.superavesome.musicplayer.domain.GetAllAlbumsUseCase;
 import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCase;
+import me.dev.superavesome.musicplayer.domain.GetAllGenreUseCase;
 import me.dev.superavesome.musicplayer.domain.GetAllSongsUseCase;
 
 /**
@@ -33,4 +34,6 @@ public interface AppComponent {
     GetAllSongsUseCase provideGetAllSongsUseCase();
 
     GetAllArtistUseCase provideGetAllArtistUseCase();
+
+    GetAllGenreUseCase provideGetAllGenreUseCase();
 }

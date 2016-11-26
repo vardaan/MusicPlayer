@@ -27,7 +27,7 @@ public class ArtistFinder extends Finder<Artist> {
     }
 
     @Override
-    protected Artist buildSongFromCursor(Cursor cursor) {
+    protected Artist buildObjectFromCursor(Cursor cursor) {
         return new Artist.Builder().name(
                 cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Artists.ARTIST)))
                 .numAlbums(cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Artists.NUMBER_OF_ALBUMS)))

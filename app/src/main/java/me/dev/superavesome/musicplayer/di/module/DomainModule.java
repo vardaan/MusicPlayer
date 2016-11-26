@@ -9,6 +9,8 @@ import me.dev.superavesome.musicplayer.domain.GetAllAlbumsUseCase;
 import me.dev.superavesome.musicplayer.domain.GetAllAlbumsUseCaseImpl;
 import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCase;
 import me.dev.superavesome.musicplayer.domain.GetAllArtistUseCaseImpl;
+import me.dev.superavesome.musicplayer.domain.GetAllGenreUseCase;
+import me.dev.superavesome.musicplayer.domain.GetAllGenreUseCaseImpl;
 import me.dev.superavesome.musicplayer.domain.GetAllSongsUseCase;
 import me.dev.superavesome.musicplayer.domain.GetAllSongsUseCaseImpl;
 
@@ -35,5 +37,11 @@ public class DomainModule {
     @Singleton
     GetAllSongsUseCase providesGetAllSongsUseCase(DataManager dataManager) {
         return new GetAllSongsUseCaseImpl(dataManager);
+    }
+
+    @Provides
+    @Singleton
+    GetAllGenreUseCase provideGetAllGenreUseCase(DataManager dataManager) {
+        return new GetAllGenreUseCaseImpl(dataManager);
     }
 }

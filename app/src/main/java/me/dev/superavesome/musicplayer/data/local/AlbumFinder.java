@@ -21,7 +21,7 @@ public class AlbumFinder extends Finder<Album> {
 
 
     @Override
-    protected Album buildSongFromCursor(Cursor cursor) {
+    protected Album buildObjectFromCursor(Cursor cursor) {
         return new Album.Builder().albumName(
                 cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM)))
                 .id(cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Albums._ID)))

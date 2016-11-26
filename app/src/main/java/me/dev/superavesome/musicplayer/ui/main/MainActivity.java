@@ -27,6 +27,7 @@ import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.base.BaseActivity;
 import me.dev.superavesome.musicplayer.ui.albumList.AlbumListFragment;
 import me.dev.superavesome.musicplayer.ui.artistList.ArtistListFragment;
+import me.dev.superavesome.musicplayer.ui.genreList.GenreListFragment;
 import me.dev.superavesome.musicplayer.ui.songList.SongListFragment;
 
 
@@ -116,15 +117,16 @@ public class MainActivity extends BaseActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         List<? extends Fragment> fragments
-                = Arrays.asList(new AlbumListFragment(), new SongListFragment(), new ArtistListFragment());
-        final List<String> titles = Arrays.asList("Albums", "Songs", "Artists");
+                = Arrays.asList(new AlbumListFragment(), new SongListFragment(),
+                new ArtistListFragment(), new GenreListFragment());
+        final List<String> titles = Arrays.asList("Albums", "Songs", "Artists", "Genres");
         final Adapter adapter = new Adapter(getSupportFragmentManager(), fragments, titles);
         viewPager.setAdapter(adapter);
         viewPager.setOffscreenPageLimit(fragments.size());
     }
 
     static class Adapter extends FragmentPagerAdapter {
-        private  List<? extends Fragment> fragments;
+        private List<? extends Fragment> fragments;
         private final List<String> titles;
 
         Adapter(FragmentManager fm, List<? extends Fragment> fragments, List<String> titles) {

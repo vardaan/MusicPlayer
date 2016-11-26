@@ -21,13 +21,15 @@ public final class LocalDataSource implements DataSource {
     final SongFinder songFinder;
     final AlbumFinder albumFinder;
     final ArtistFinder artistFinder;
+    final GenreFinder genreFinder;
 
     @Inject
     public LocalDataSource(Context context, AlbumFinder albumFinder,
-                           ArtistFinder artistFinder) {
+                           ArtistFinder artistFinder, GenreFinder genreFinder) {
         this.songFinder = new SongFinder(context);
         this.albumFinder = albumFinder;
         this.artistFinder = artistFinder;
+        this.genreFinder = genreFinder;
     }
 
     //todo make an abstraction use rxjava
@@ -48,6 +50,6 @@ public final class LocalDataSource implements DataSource {
 
     @Override
     public Observable<List<Genre>> getAllGenres() {
-        throw new IllegalStateException("NOT YET IMPLEMENTED");
+        return Observable.just(genreFinder.getData());
     }
 }

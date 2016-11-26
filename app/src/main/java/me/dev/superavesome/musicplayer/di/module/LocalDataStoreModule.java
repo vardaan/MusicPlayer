@@ -8,6 +8,7 @@ import dagger.Module;
 import dagger.Provides;
 import me.dev.superavesome.musicplayer.data.local.AlbumFinder;
 import me.dev.superavesome.musicplayer.data.local.ArtistFinder;
+import me.dev.superavesome.musicplayer.data.local.GenreFinder;
 import me.dev.superavesome.musicplayer.data.local.SongFinder;
 
 /**
@@ -33,4 +34,11 @@ public class LocalDataStoreModule {
     public ArtistFinder providesArtistFinder(Context context) {
         return new ArtistFinder(context);
     }
+
+    @Provides
+    @Singleton
+    public GenreFinder providesGenreFinder(Context context) {
+        return new GenreFinder(context);
+    }
+
 }

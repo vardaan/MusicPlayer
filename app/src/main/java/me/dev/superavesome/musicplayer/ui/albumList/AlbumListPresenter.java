@@ -3,8 +3,7 @@ package me.dev.superavesome.musicplayer.ui.albumList;
 import javax.inject.Inject;
 
 import me.dev.superavesome.musicplayer.domain.GetAllAlbumsUseCase;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import me.dev.superavesome.musicplayer.utils.RxUtils;
 import rx.subscriptions.CompositeSubscription;
 import timber.log.Timber;
 
@@ -14,7 +13,9 @@ import static me.dev.superavesome.musicplayer.utils.RxUtils.unSubscribe;
 /**
  * Created by vardansharma on 15/11/16.
  */
+
 class AlbumListPresenter implements AlbumListContract.Presenter {
+
 
     private GetAllAlbumsUseCase getAllAlbumsUseCaseUseCase;
     private AlbumListContract.View view;
@@ -30,13 +31,12 @@ class AlbumListPresenter implements AlbumListContract.Presenter {
     @Override
     public void getAlbums() {
         subscription.add(getAllAlbumsUseCaseUseCase.getAlbumList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxUtils.applyIOScheduler() )
                 .subscribe(albumList -> {
                     view.showAlbums(albumList);
                 }, throwable -> {
                     Timber.e(throwable.getMessage());
-                    view.showEmptyScreen();
+                    view.showErrorScreen();
                 }));
     }
 

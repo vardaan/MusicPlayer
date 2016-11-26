@@ -2,13 +2,10 @@ package me.dev.superavesome.musicplayer.base;
 
 import android.app.Application;
 
-import com.squareup.leakcanary.LeakCanary;
-
 import me.dev.superavesome.musicplayer.R;
 import me.dev.superavesome.musicplayer.di.component.AppComponent;
 import me.dev.superavesome.musicplayer.di.component.DaggerAppComponent;
 import me.dev.superavesome.musicplayer.di.module.ApplicationModule;
-import timber.log.Timber;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -32,16 +29,6 @@ public class BaseApp extends Application {
                 new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Roboto-Regular.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build());
-
-        //enabling Timber
-        Timber.plant(new Timber.DebugTree());//todo refactor add else statement
-
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
 
     }
 }
